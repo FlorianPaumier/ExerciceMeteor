@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import '../../../client/assets/styles/Header.css';
 import '../../../client/assets/styles/tables.css';
 
@@ -6,21 +7,13 @@ const Header = () => (
     <section id={"Header"}>
         <div className={"Header"}>
             <div className={"brand-header"}>
-                <button>Mon Portfolio</button>
+                <Link to={'/'}><button>Accueil</button></Link>
             </div>
             <div className={"mt-3"}>
-                <button >
-                    <div>Mes projets</div>
-                </button>
-                <button >
-                    <div>Présentation</div>
-                </button>
-                <button >
-                    <div>Mon entreprise</div>
-                </button>
-                <button >
-                    <div>Me contacter</div>
-                </button>
+                <Link to={'/login'}><button>Log in</button></Link>
+                <Link to={'/logout'}><button>Log out</button></Link>
+                <Link to={'/signin'}><button>Sign in</button></Link>
+                <Link to={'/students'}><button>Dashboard</button></Link>
             </div>
         </div>
         <div className="burger-menu">

@@ -29,7 +29,7 @@ class Students extends Component {
         let github = document.getElementById("githubLink").value;
 
         if(firstName !== "" && lastName  !== "" && github  !== ""){
-            console.log(Users.insert({'firstName': firstName, 'lastName': lastName, 'githubLink': github}));
+            Users.insert({'firstName': firstName, 'lastName': lastName, 'githubLink': github});
         };
     }
 }
