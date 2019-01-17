@@ -1,17 +1,28 @@
-a:hover {
+a {
   color: #496b89;
-}
-
-#Header {
-  display: flex;
-  width: 20vw;
+  text-decoration: none;
 }
 
 .Header {
+  display: flex;
+  flex-direction: column;
   background-color: #ffa662;
   min-height: 100vh;
-  height: 100%;
   width: 20vw;
+}
+.Header__content {
+  display: flex;
+  flex-direction: column;
+}
+.Header__content button {
+  width: 100%;
+  padding: 5%;
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  margin: 2% 0 2% 0;
+}
+.Header__content button:hover {
+  background-color: #a5a5a5;
 }
 
 .brand-header {

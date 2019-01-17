@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Users } from "../../api/users";
+import {students} from "../../api/students";
 
 export class Table extends Component {
+
+    componentWillMount() {
+        Meteor.subscribe('students');
+    }
 
     render() {
         return (
@@ -13,17 +17,18 @@ export class Table extends Component {
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Github</th>
+                        <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     {
-                        this.props.users.map(user => (
-                            <tr key={user._id}>
-                                <td>{user.firstName}</td>
-                                <td>{user.lastName}</td>
-                                <td>{user.githubLink}</td>
+                        this.props.students.map(student => (
+                            <tr key={student._id}>
+                                <td>{student.firstName}</td>
+                                <td>{student.lastName}</td>
+                                <td>{student.githubLink}</td>
                                 <td>
-                                    <button data-id={user._id} onClick={this.deleteUser}>Delete</button>
+                                    <button data-id={student._id} onClick={this.deleteUser}>Delete</button>
                                 </td>
                             </tr>
                         )
@@ -36,12 +41,12 @@ export class Table extends Component {
 
     deleteUser = (e) => {
         let id = e.currentTarget.getAttribute("data-id");
-        Users.remove(id);
+        Meteor.call('students.remove',id);
     }
 };
 
 export default withTracker(() => {
     return {
-        users: Users.find().fetch()
+        students: students.find().fetch()
     };
 })(Table);

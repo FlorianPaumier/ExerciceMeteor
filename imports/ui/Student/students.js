@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Users } from "../../api/users";
+import { students } from "../../api/students";
 
 class Students extends Component {
 
@@ -18,18 +19,18 @@ class Students extends Component {
                     Github link :
                     <input type="text" name={"githubLink"} id={"githubLink"}/>
                 </label>
-                <button onClick={this.addUser}>Valider</button>
+                <button onClick={this.addStudent}>Valider</button>
             </div>
         );
     }
 
-    addUser = () => {
+    addStudent = () => {
         let firstName = document.getElementById("firstName").value;
         let lastName = document.getElementById("lastName").value;
         let github = document.getElementById("githubLink").value;
 
         if(firstName !== "" && lastName  !== "" && github  !== ""){
-            Users.insert({'firstName': firstName, 'lastName': lastName, 'githubLink': github});
+            Meteor.call('students.insert', firstName, lastName, github);
         };
     }
 }

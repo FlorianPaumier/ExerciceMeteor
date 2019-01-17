@@ -7,3 +7,21 @@ html, body{
     display: flex;
     flex-direction: row;
 }
+
+/* Full-width input fields */
+input[type=text], input[type=password],input[type=email], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+select{
+    height: 5vh;
+}
+
+button:hover {
+    opacity: 0.8;
+}
