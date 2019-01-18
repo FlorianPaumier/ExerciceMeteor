@@ -4,9 +4,14 @@ import { students } from "../../api/students";
 
 class Students extends Component {
 
+    constructor(props, context) {
+        super(props, context);
+
+    }
+
     render() {
         return (
-            <div>
+            <div className={"form"}>
                 <label htmlFor="firstName">
                     First Name :
                     <input name={"firstName"} id={"firstName"} type="text"/>

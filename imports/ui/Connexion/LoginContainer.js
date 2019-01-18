@@ -17,11 +17,11 @@ export default class LoginContainer extends Component {
             <form onSubmit={this.login} className={"login"}>
                 <label>
                     Email
-                    <input type="text" ref={this.email}/>
+                    <input type="text" ref={this.email} value={"sm3cg04@gmail.com"}/>
                 </label>
                 <label>
                     Mot de passe
-                    <input type="password" ref={this.password}/>
+                    <input type="password" ref={this.password} value={"ss"}/>
                 </label>
                 <button>Connexion</button>
             </form>

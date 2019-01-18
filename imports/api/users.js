@@ -7,24 +7,16 @@ import {Accounts} from "meteor/accounts-base";
 
 export const profile = new Mongo.Collection('profile');
 
-if (Meteor.isServer) {
-    // This code only runs on the server
-    Meteor.publish('users', function getUsers() {
-        return profile.find();
-    });
-
-    // This code only runs on the server
-    Meteor.publish('users', function getUser(userId) {
-        return profile.findOne({owner : userId});
-    });
-}
-
 Meteor.methods({
     'roles.add'(userId, roles) {
         check(userId, String);
         check(roles, Array);
 
         Roles.addUsersToRoles(userId, roles);
+    },
+    'roles.find'() {
+
+        return Roles.getAllRoles();
     },
     'profile.insert'(username, password) {
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Table from "../Home/table";
 
-const HomeContainer = () => (
+const HomeContainer = (user) => (
     <section>
-        <Table />
+        <Table user={user}/>
     </section>
 );
 

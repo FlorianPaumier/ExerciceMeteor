@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-export const AuthentificationContext = React.createContext();
+export const AppContext = React.createContext();
 
-export class AuthentificationProvider extends Component {
+export class AppProvider extends Component {
 
     constructor(props){
         super(props);
@@ -12,7 +12,8 @@ export class AuthentificationProvider extends Component {
     getMeteorData(){
         return {
             isAuthenticated: Meteor.userId() !== null,
-            user: Meteor.userId()
+            user: Meteor.userId(),
+            roles : ["admin", "teacher", "student"]
         };
     }
 
@@ -22,11 +23,11 @@ export class AuthentificationProvider extends Component {
 
     render() {
         return (
-            <AuthentificationContext.Provider value={{
+            <AppContext.Provider value={{
                 state : this.state
             }}>
                 {this.props.children}
-            </AuthentificationContext.Provider>
+            </AppContext.Provider>
         );
     }
 }

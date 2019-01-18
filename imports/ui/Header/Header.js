@@ -1,32 +1,14 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import {AuthentificationContext, AuthentificationProvider} from "../../context/AuthentificationContext";
+import {AppContext, AuthentificationProvider} from "../../context/AppContext";
 import '../../../client/assets/styles/Header.css';
-import {Redirect} from "react-router";
 import {withTracker} from "meteor/react-meteor-data";
-import {students} from "../../api/students";
-import {Table} from "../Home/table";
+import createHistory from "history/createBrowserHistory";
 
 export class Header extends Component {
 
-    fireRedirect = false;
 
-    toggleHeader(x) {
-    }
-
-    componentDidUpdate() {
-        let value = this.context;
-    }
-
-    componentWillUpdate(): void {
-        console.log(this.context);
-    }
-
-    componentWillUnmount() {
-        let value = this.context;
-        console.log(value);
-        /* ... */
-    }
+    history = createHistory();
 
     constructor(props, context) {
         super(props, context);
@@ -42,12 +24,13 @@ export class Header extends Component {
                     isAuthenticated: Meteor.userId() !== null,
                     user: Meteor.userId()
                 });
+
+                this.history.push('/login');
             }
         });
     };
 
     render() {
-        console.log(this.props);
         return (
             <section id={"Header"}>
                 <div className={"Header"}>
@@ -69,20 +52,30 @@ export class Header extends Component {
                         )}
                         {this.props.isAuthenticated && (
                             <React.Fragment>
-                                <Link to={'/logout'}>
-                                    <button onClick={this.logout}>Log out</button>
-                                </Link>
                                 <Link to={'/students'}>
                                     <button>Dashboard</button>
                                 </Link>
                                 <Link to={'/profile'}>
                                     <button>Profile</button>
                                 </Link>
+                                {this.props.user && this.props.user.roles && (
+                                    <span>
+                                    {(this.props.user.roles.includes("admin") > -1 || this.props.user.find.includes("teacher") > -1) && (
+                                        <Link to={'/Exercice'}>
+                                            <button>Exercice</button>
+                                        </Link>
+                                    )}
+                                    </span>
+
+                                )}
+                                <Link to={'/logout'}>
+                                    <button onClick={this.logout}>Log out</button>
+                                </Link>
                             </React.Fragment>
                         )}
                     </div>
                 </div>
-                <div className="burger-menu" onClick={this.toggleHeader}>
+                <div className="burger-menu">
                     <div className={`bar1`}></div>
                     <div className={`bar2`}></div>
                     <div className={`bar3`}></div>
@@ -94,8 +87,9 @@ export class Header extends Component {
 
 export default withTracker(() => {
     return {
-        isAuthenticated: Meteor.userId() !== null
+        isAuthenticated: Meteor.userId() !== null,
+        user: Meteor.user()
     };
 })(Header);
 
-Header.contextType = AuthentificationContext;
+Header.contextType = AppContext;

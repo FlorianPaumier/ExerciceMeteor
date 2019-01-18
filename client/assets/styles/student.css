@@ -1,0 +1,18 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 5vh auto;
+}
+.form button {
+  color: white;
+  margin: 8px 8px;
+  border: none;
+  cursor: pointer;
+  width: 5vw;
+  height: 5vh;
+  background-color: #ffb052;
+  align-self: flex-end;
+}
+
+/*# sourceMappingURL=student.css.map */

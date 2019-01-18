@@ -1,0 +1,19 @@
+@import "variables";
+
+.form{
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 5vh auto;
+
+  button {
+    color: white;
+    margin: 8px 8px;
+    border: none;
+    cursor: pointer;
+    width: 5vw;
+    height: 5vh;
+    background-color: $color-orange-light;
+    align-self: flex-end;
+  }
+}
